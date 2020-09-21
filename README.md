@@ -68,7 +68,7 @@ Remark that the new one will have the old name and the old one will have `-flat-
 
 2) Run the migrate command that will generate the dockerfiles to build and push the images:
 ```
-make bundle-migrate
+make migrate-bundle
 ```
 This last one runs opm under the hood and [here](docs/opm_alpha_generate.md) you can find what opm is doing.
 

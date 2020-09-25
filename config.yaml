@@ -1,0 +1,13 @@
+output_directory: "migrated_artifacts"
+
+selected_operators:
+  - mongodb-enterprise
+  - portworx-certified
+  - couchdb-operator-certified
+  - appsody-operator-certified
+  - perceptilabs-operator-package
+
+flat_operators:
+  - couchdb-operator-certified  
+  - appsody-operator-certified
+  - perceptilabs-operator-package

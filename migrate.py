@@ -54,6 +54,25 @@ def nest_flat_operators(manifests_path, config):
     process.wait()
     print("nesting " + operator + " ......... Done.")
 
+def migrate_bundle_format(manifests_path, config):
+  selected_operators = config["selected_operators"]
+  for operator in selected_operators:
+    selected_versions = config[operator]["versions"]
+    bundle_path = manifests_path + "/" + config[operator]["path"]
+    for version in selected_versions:
+      print("\n\nMigrating " + operator + ":" + version + "\n\n")
+      cmd = ["opm", "alpha", "bundle", "generate", "--directory", bundle_path + "/" + version, "migrated_artifacts/" + operator + "/" + version]
+      process = subprocess.Popen(cmd)
+      output = process.communicate()[0]
+      process.wait()
+      os.system('echo "LABEL com.redhat.openshift.versions=\"v4.6,v4.5\"" >> bundle.Dockerfile')
+      os.system('echo "LABEL com.redhat.delivery.operator.bundle=true" >> bundle.Dockerfile')
+      if version == selected_versions[-1]:
+        os.system('echo "LABEL com.redhat.delivery.backport=true" >> bundle.Dockerfile')
+      shutil.move("bundle.Dockerfile", "migrated_artifacts/" + operator + "/" + version + "bundle-" + version + ".Dockerfile")
+
+
+
 def main():
 
   delete_old_manifests()
@@ -63,6 +82,7 @@ def main():
 
   select_bundles(manifests_path, config)
   nest_flat_operators(manifests_path, config)
+  migrate_bundle_format(manifests_path, config)
 
 if __name__ == "__main__":
   main()

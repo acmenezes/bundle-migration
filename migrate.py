@@ -5,6 +5,20 @@ import subprocess
 import os
 import shutil
 
+class ImageBuilder:
+  def __init__(self):
+    # load tokens and PIDs
+
+  # clean local images per operator name
+
+  # build local images per operator name and tags
+
+  # tag local images with proper PIDs and red hat registry
+
+  # execute podman login for each specific operator project
+
+  # execute push commands for one selected image per operator at once
+
 class BundleMigration:
   def __init__(self):
     

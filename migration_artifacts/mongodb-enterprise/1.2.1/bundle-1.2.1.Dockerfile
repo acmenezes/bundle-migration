@@ -7,7 +7,7 @@ LABEL operators.operatorframework.io.bundle.package.v1=mongodb-enterprise
 LABEL operators.operatorframework.io.bundle.channels.v1=stable
 LABEL operators.operatorframework.io.bundle.channel.default.v1=stable
 
-COPY manifests-338226509/mongodb-enterprise/mongodb-enterprise-8_fak4bk/1.1.0 /manifests/
-COPY manifests-338226509/mongodb-enterprise/mongodb-enterprise-8_fak4bk/metadata /metadata/
+COPY migration_artifacts/mongodb-enterprise/1.2.1/manifests /manifests/
+COPY migration_artifacts/mongodb-enterprise/1.2.1/metadata /metadata/
 LABEL com.redhat.openshift.versions=v4.6,v4.5
 LABEL com.redhat.delivery.operator.bundle=true
